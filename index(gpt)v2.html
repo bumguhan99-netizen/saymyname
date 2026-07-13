@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AE 기획력과 AI 제작 역량을 바탕으로 문제 정의부터 프로토타입까지 연결하는 한범구의 SSAFY 팀 빌딩 프로필입니다.">
+    <meta name="theme-color" content="#020617">
+    <meta name="color-scheme" content="dark light">
+    <meta property="og:title" content="한범구 | 기획에서 AI 프로토타입까지">
+    <meta property="og:description" content="현장 기반 기획력, AI 제작 역량, 협업 방식을 한눈에 확인하세요.">
+    <meta property="og:type" content="website">
+    <title>한범구 | 기획에서 AI 프로토타입까지</title>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <script>
+        // Prevent a light/dark theme flash before the page is painted.
+        try {
+            const savedTheme = localStorage.getItem('themeMode');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark', savedTheme ? savedTheme === 'dark' : prefersDark);
+        } catch (_) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <!-- Tailwind Play CDN: convenient for a single-file prototype. Compile Tailwind for production deployment. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode switching
+            theme: {
+                extend: {
+                    colors: {
+                        brandNavy: {
+                            DEFAULT: '#0F172A', // Deep primary navy
+                            light: '#1E293B',   // Card background navy
+                            dark: '#020617',    // Deepest dark navy
+                        },
+                        brandOrange: {
+                            DEFAULT: '#F97316', // Dynamic creative orange
+                            light: '#FB923C',   // Hover orange
+                            soft: '#FFEDD5',    // Very light accent
+                        },
+                        brandGray: {
+                            light: '#F8FAFC',
+                            muted: '#94A3B8',
+                        }
+                    },
+                    fontFamily: {
+                        title: ['GmarketSans', 'sans-serif'],
+                        body: ['Pretendard', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Imports & Custom Styles -->
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+        
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GmarketSansBold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Keep transitions on interactive surfaces only; applying them to every div/span is expensive. */
+        :where(a, button, input, textarea, select, header, .interactive-card, .surface-transition) {
+            transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+            transition-duration: 0.25s;
+            transition-timing-function: ease;
+        }
+
+        section[id] { scroll-margin-top: 5rem; }
+
+        :where(a, button, input, textarea, select):focus-visible {
+            outline: 3px solid rgba(249, 115, 22, 0.55);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 200;
+            transform: translateY(-180%);
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            background: #F97316;
+            color: white;
+            font-weight: 700;
+        }
+        .skip-link:focus { transform: translateY(0); }
+
+        /* Base Typography & Styling Defaults */
+        body {
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        h1, h2, h3, .font-title {
+            font-family: 'GmarketSans', sans-serif;
+        }
+
+        /* Scrollbar aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        html:not(.dark) ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        html:not(.dark) ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F97316;
+        }
+
+        /* Hover Glow Lift Card effects */
+        .interactive-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.18);
+        }
+        .dark .interactive-card:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+        html:not(.dark) .interactive-card:hover {
+            border-color: rgba(249, 115, 22, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12);
+        }
+
+        /* Smooth scroll reveal styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse gradient border design helper */
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.4), transparent, rgba(15, 23, 42, 0.8));
+            border-radius: inherit;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Parallax Transitions for smooth movement */
+        .parallax-element {
+            transition: transform 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+            will-change: transform;
+        }
+
+        /* Caret Blinking typing cursor */
+        .typing-cursor::after {
+            content: '';
+            display: inline-block;
+            width: 2px;
+            height: 0.85em;
+            background-color: #F97316;
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: caretBlink 0.8s infinite;
+        }
+        @keyframes caretBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            .parallax-element, #parallaxGridBg { transform: none !important; }
+            .typing-cursor::after { display: none; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 dark:bg-brandNavy-dark dark:text-slate-100">
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgressBar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-brandOrange to-brandOrange-light z-[100] w-0 transition-all duration-75"></div>
+
+    <!-- Fixed Background Grid Layer for beautiful Parallax -->
+    <div id="parallaxGridBg" class="fixed inset-y-0 left-0 w-full h-[120vh] -top-[10vh] pointer-events-none z-0 opacity-[0.03] dark:opacity-[0.06] will-change-transform" style="background-image: radial-gradient(#F97316 1.5px, transparent 1.5px); background-size: 32px 32px;"></div>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-white/85 dark:bg-brandNavy-dark/80 backdrop-blur-lg border-b border-slate-200/80 dark:border-brandNavy-light/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brandNavy to-brandOrange flex items-center justify-center font-title text-white font-bold text-sm tracking-tighter shadow-md shadow-brandOrange/10">
+                    HB
+                </div>
+                <span class="font-title text-base sm:text-lg tracking-wide group-hover:text-brandOrange text-slate-900 dark:text-white transition-colors">
+                    BUMGU HAN<span class="text-brandOrange">.</span>
+                </span>
+            </a>
+
+            <!-- Menu (Desktop & Tablet) -->
+            <nav aria-label="주요 메뉴" class="hidden md:flex items-center gap-5 lg:gap-7 text-sm font-medium text-slate-500 dark:text-brandGray-muted">
+                <a href="#intro" class="hover:text-brandOrange dark:hover:text-white transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-brandOrange hover:after:w-full after:transition-all">스토리</a>
+                <a href="#strengths" class="hover:text-brandOrange dark:hover:text-white transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-brandOrange hover:after:w-full after:transition-all">핵심 역량</a>
+                <a href="#collaboration-fit" class="hover:text-brandOrange dark:hover:text-white transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-brandOrange hover:after:w-full after:transition-all">협업 방식</a>
+                <a href="#simulator" class="hover:text-brandOrange dark:hover:text-white transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-brandOrange hover:after:w-full after:transition-all">시너지 매칭</a>
+                <a href="#synergy" class="hover:text-brandOrange dark:hover:text-white transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-brandOrange hover:after:w-full after:transition-all">SSAFY 시너지</a>
+                <a href="#guestbook-section" class="hover:text-brandOrange dark:hover:text-white transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[2px] after:bg-brandOrange hover:after:w-full after:transition-all">네트워킹 방명록</a>
+            </nav>
+
+            <!-- CTA / Contact Trigger Button & Dark mode Toggle -->
+            <div class="hidden md:flex items-center gap-4">
+                <!-- Theme Mode Toggle Button -->
+                <button type="button" id="themeToggleBtn" aria-label="밝은/어두운 테마 전환" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-brandOrange/10 dark:bg-brandNavy-light/80 dark:hover:bg-brandOrange/15 text-slate-500 hover:text-brandOrange dark:text-brandGray-muted dark:hover:text-brandOrange border border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/30 flex items-center justify-center transition-all duration-300 shadow-md" title="테마 변경">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+                <button type="button" onclick="openProposalModal()" class="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-brandOrange/10 dark:bg-brandNavy-light text-sm font-semibold border border-slate-200 dark:border-brandNavy/30 hover:border-brandOrange text-slate-800 dark:text-white hover:text-brandOrange transition-all duration-300 shadow-lg hover:shadow-brandOrange/10">
+                    프로젝트 제안하기
+                </button>
+            </div>
+
+            <!-- Mobile Action Bar (Toggle + Menu) -->
+            <div class="flex items-center gap-3 md:hidden">
+                <button type="button" id="themeToggleBtnMobile" aria-label="밝은/어두운 테마 전환" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-brandNavy-light text-slate-500 dark:text-brandGray-muted border border-slate-200 dark:border-brandNavy-light flex items-center justify-center" title="테마 변경">
+                    <i data-lucide="sun" class="w-4.5 h-4.5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4.5 h-4.5 block dark:hidden"></i>
+                </button>
+                <button type="button" id="mobileMenuBtn" aria-controls="mobileMenu" aria-expanded="false" class="text-slate-800 dark:text-white focus:outline-none" aria-label="메뉴 열기">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden absolute top-20 left-0 w-full bg-white/95 dark:bg-brandNavy-dark/95 border-b border-slate-200 dark:border-brandNavy-light/50 py-6 px-4 sm:px-6 transition-all duration-300 shadow-xl">
+            <nav aria-label="모바일 메뉴" class="flex flex-col gap-5 text-base sm:text-lg font-medium">
+                <a href="#intro" class="mobile-link text-slate-600 dark:text-brandGray-muted hover:text-brandOrange">스토리</a>
+                <a href="#strengths" class="mobile-link text-slate-600 dark:text-brandGray-muted hover:text-brandOrange">핵심 역량</a>
+                <a href="#collaboration-fit" class="mobile-link text-slate-600 dark:text-brandGray-muted hover:text-brandOrange">협업 방식</a>
+                <a href="#simulator" class="mobile-link text-slate-600 dark:text-brandGray-muted hover:text-brandOrange">시너지 매칭</a>
+                <a href="#synergy" class="mobile-link text-slate-600 dark:text-brandGray-muted hover:text-brandOrange">SSAFY 시너지</a>
+                <a href="#guestbook-section" class="mobile-link text-slate-600 dark:text-brandGray-muted hover:text-brandOrange">네트워킹 방명록</a>
+                <hr class="border-slate-200 dark:border-brandNavy-light/50 my-2">
+                <button type="button" onclick="openProposalModal()" class="mobile-link w-full text-center py-3 rounded-xl bg-brandOrange text-white font-bold text-sm">
+                    함께 팀 빌딩하기
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-slate-50 dark:bg-brandNavy-dark">
+        <!-- Interactive Tech/Lens Background Canvas -->
+        <canvas id="heroCanvas" class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-55 dark:opacity-40 z-0"></canvas>
+        
+        <!-- Ambient background radial glows (Parallax Applied) -->
+        <div class="parallax-element absolute top-1/4 left-10 w-72 h-72 bg-brandOrange/10 rounded-full blur-[100px] pointer-events-none z-0" data-speed="0.2"></div>
+        <div class="parallax-element absolute bottom-10 right-10 w-96 h-96 bg-slate-200 dark:bg-brandNavy-light/45 rounded-full blur-[120px] pointer-events-none z-0" data-speed="-0.1"></div>
+        
+        <!-- Gradient Background Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-100/30 dark:via-brandNavy-dark/50 to-slate-50 dark:to-brandNavy-dark z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 flex flex-col items-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandOrange/10 border border-brandOrange/20 text-brandOrange font-semibold text-xs md:text-sm mb-8 tracking-wider animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-brandOrange"></span>
+                SSAFY TEAM-BUILDING PROFILE
+            </div>
+
+            <!-- Catchphrase (Enhanced with Typing Effect) -->
+            <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white mb-6 font-title px-1 min-h-[3.6em] sm:min-h-[auto]">
+                <span class="text-brandOrange">AE</span>로 길러온 기획력을,<br>
+                <span class="text-brandOrange">AI</span> 제작 역량으로 확장해<br>
+                <span class="text-brandOrange typing-cursor" id="typing-hero"></span><br class="hidden sm:block"> 한범구입니다
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-brandGray-muted max-w-2xl leading-relaxed mb-10 font-light px-2">
+                현장에서 발견한 문제를 구조화하고, AI로 빠르게 시각화하며, 개발 동료와 함께 작동하는 프로토타입까지 연결합니다.<br class="hidden sm:block">
+                이 페이지에서 실제 경험, 협업 방식, 트랙별 프로젝트 조합을 확인할 수 있습니다.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto justify-center px-4 sm:px-0">
+                <a href="#intro" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brandOrange hover:bg-brandOrange-light text-white font-bold transition-all shadow-lg shadow-brandOrange/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group">
+                    나의 스토리 보기
+                    <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
+                </a>
+                <button type="button" onclick="openProposalModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white dark:bg-brandNavy-light hover:bg-slate-100 dark:hover:bg-brandNavy text-slate-800 dark:text-white font-bold border border-slate-300 dark:border-brandNavy-light hover:border-brandOrange/40 dark:hover:border-brandOrange/40 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-sm">
+                    팀원 제안하기
+                </button>
+            </div>
+
+            <!-- Visual Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-slate-400 dark:text-brandGray-muted/40 text-[10px] tracking-widest uppercase">
+                <span>SCROLL</span>
+                <div class="w-6 h-10 border-2 border-slate-300 dark:border-brandNavy-light/60 rounded-full flex justify-center p-1">
+                    <div class="w-1 h-2 bg-brandOrange rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="intro" class="relative py-24 bg-white dark:bg-brandNavy-dark overflow-hidden">
+        
+        <!-- Decorative Parallax Blurs inside Intro -->
+        <div class="parallax-element absolute top-10 right-10 w-[350px] h-[350px] bg-brandOrange/5 rounded-full blur-[110px] pointer-events-none" data-speed="0.15"></div>
+        <div class="parallax-element absolute bottom-5 left-10 w-[400px] h-[400px] bg-slate-200 dark:bg-brandNavy-light/35 rounded-full blur-[130px] pointer-events-none" data-speed="-0.08"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl mb-16 sm:mb-20 reveal">
+                <span class="text-brandOrange font-bold text-xs sm:text-sm uppercase tracking-widest font-title block mb-2">STORYTELLING</span>
+                <h2 class="text-xl sm:text-2xl md:text-4xl font-bold font-title text-slate-900 dark:text-white leading-snug">
+                    현장에서 출발해, 기술로 확장하기까지
+                </h2>
+                <div class="w-16 h-1 bg-brandOrange mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Narrative Timeline Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative mb-20">
+                
+                <!-- Card 1: Shooting / Lens -->
+                <div class="reveal bg-slate-50 dark:bg-brandNavy-light/30 border border-slate-200 dark:border-brandNavy-light/80 p-6 sm:p-8 rounded-2xl relative overflow-hidden group interactive-card shadow-sm">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brandOrange/5 rounded-bl-full group-hover:bg-brandOrange/10 transition-colors"></div>
+                    
+                    <div class="w-12 h-12 rounded-xl bg-brandOrange/10 flex items-center justify-center text-brandOrange mb-6">
+                        <i data-lucide="camera" class="w-6 h-6"></i>
+                    </div>
+                    
+                    <span class="text-xs font-semibold text-brandOrange tracking-wide uppercase font-title block mb-2">01. 렌즈 너머의 시선 (AE 기획)</span>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 font-title">대상을 가장 직관적으로 담아내는 기획</h3>
+                    <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed">
+                        화려한 기술에만 매몰되지 않습니다. 치열한 비즈니스 현장에서 고객의 핵심 니즈와 트렌드를 날카롭게 포착하고, 이를 탄탄한 논리로 설계하는 AE 기획의 깊이 있는 바탕을 견고히 쌓아 올렸습니다.
+                    </p>
+                </div>
+
+                <!-- Card 2: AI & Production -->
+                <div class="reveal bg-slate-50 dark:bg-brandNavy-light/30 border border-slate-200 dark:border-brandNavy-light/80 p-6 sm:p-8 rounded-2xl relative overflow-hidden group interactive-card shadow-sm" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-bl-full group-hover:bg-orange-500/10 transition-colors"></div>
+                    
+                    <div class="w-12 h-12 rounded-xl bg-brandOrange/10 flex items-center justify-center text-brandOrange mb-6">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    
+                    <span class="text-xs font-semibold text-brandOrange tracking-wide uppercase font-title block mb-2">02. AI 기반 워크플로우</span>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 font-title">기술을 결합해 완성하는 프로덕션 혁신</h3>
+                    <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed">
+                        감각적인 아이디어에 인공지능의 효율성을 더합니다. 최신 AI 제너레이티브 미디어 프로덕션 워크플로우를 주도적으로 도입하여 리서치, 모델링, 시각화를 압도적인 속도로 구현하고 시제품을 구체화합니다.
+                    </p>
+                </div>
+
+                <!-- Card 3: Synergy / SSAFY -->
+                <div class="reveal bg-slate-50 dark:bg-brandNavy-light/30 border border-slate-200 dark:border-brandNavy-light/80 p-6 sm:p-8 rounded-2xl relative overflow-hidden group interactive-card shadow-sm col-span-1 md:col-span-2 lg:col-span-1" style="transition-delay: 200ms;">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brandOrange/5 rounded-bl-full group-hover:bg-brandOrange/10 transition-colors"></div>
+                    
+                    <div class="w-12 h-12 rounded-xl bg-brandOrange/10 flex items-center justify-center text-brandOrange mb-6">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    
+                    <span class="text-xs font-semibold text-brandOrange tracking-wide uppercase font-title block mb-2">03. 끈기와 완결성</span>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 font-title">다양한 트랙과의 융합 시너지 창출</h3>
+                    <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed">
+                        개발과 디자인의 조율 속에서 빛나는 해결사가 됩니다. 파이썬, 자바, 임베디드, 데이터 트랙의 핵심 동료들을 기획의 언어로 단단하게 단결시켜 어떠한 제약조건 속에서도 최상의 완성도를 끈질기게 이끌어 냅니다.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Middle Callout -->
+            <div class="reveal mt-12 sm:mt-20 p-6 sm:p-10 md:p-12 rounded-3xl bg-slate-50 dark:bg-gradient-to-r dark:from-brandNavy-light/40 dark:to-brandNavy-dark border border-slate-200 dark:border-brandNavy-light/80 flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 glow-border shadow-2xl">
+                <div class="max-w-xl text-left">
+                    <h4 class="text-base sm:text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2 font-title">"기획만 하거나 제작만 하지 않습니다"</h4>
+                    <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed">
+                        현장 지향의 기획적 치밀함과 첨단 AI의 폭발적인 기술력을 고루 내재화한 파트너로서, 협업 과정에서 개발팀의 아키텍처를 진정으로 이해하고 비즈니스 언어로 가공해 냅니다.
+                    </p>
+                </div>
+                <div class="flex items-center gap-6 self-start lg:self-center">
+                    <div class="text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-brandOrange font-title">END-TO-END</div>
+                        <div class="text-[10px] sm:text-xs text-slate-500 dark:text-brandGray-muted mt-1">기획부터 검증까지</div>
+                    </div>
+                    <div class="w-[1px] h-10 bg-slate-300 dark:bg-brandNavy-light"></div>
+                    <div class="text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white font-title">FIELD-BASED</div>
+                        <div class="text-[10px] sm:text-xs text-slate-500 dark:text-brandGray-muted mt-1">현장 관찰 기반</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section id="strengths" class="py-24 bg-slate-100/60 dark:bg-brandNavy-dark/50 border-t border-slate-200 dark:border-brandNavy-light/30 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16 sm:mb-20 reveal">
+                <span class="text-brandOrange font-bold text-xs uppercase tracking-widest font-title block mb-2">CORE CAPABILITIES</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-title text-slate-900 dark:text-white leading-snug">나의 무기가 될 3가지 매력 포인트</h2>
+                <div class="w-16 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Strengths Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Strength Card 1: Planning -->
+                <div class="reveal strength-card bg-white dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light p-6 sm:p-8 rounded-2xl flex flex-col justify-between group interactive-card shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-6 sm:mb-8">
+                            <span class="text-3xl sm:text-4xl font-bold text-brandOrange/20 font-title group-hover:text-brandOrange/40 transition-colors">01</span>
+                            <div class="w-10 h-10 rounded-lg bg-brandOrange/10 text-brandOrange flex items-center justify-center">
+                                <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 font-title group-hover:text-brandOrange transition-colors">기획력 (Planning)</h3>
+                        <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed mb-6">
+                            추상적인 아이디어 제안에 절대 그치지 않습니다. 시장 트렌드와 타겟의 디테일한 잠재 요구사항을 날카롭게 뽑아내는 <strong class="text-slate-900 dark:text-white font-semibold">비즈니스 로직 중심의 철저하게 계산된 기획</strong>을 실현합니다.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200 dark:border-brandNavy-light/60 pt-4">
+                        <span class="text-[11px] sm:text-xs text-brandOrange font-medium flex items-center gap-1.5">
+                            <i data-lucide="check" class="w-3.5 h-3.5 flex-shrink-0"></i> 마케팅 기획서의 프로젝트 설계
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Strength Card 2: Production -->
+                <div class="reveal strength-card bg-white dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light p-6 sm:p-8 rounded-2xl flex flex-col justify-between group interactive-card shadow-sm" style="transition-delay: 100ms;">
+                    <div>
+                        <div class="flex items-center justify-between mb-6 sm:mb-8">
+                            <span class="text-3xl sm:text-4xl font-bold text-brandOrange/20 font-title group-hover:text-brandOrange/40 transition-colors">02</span>
+                            <div class="w-10 h-10 rounded-lg bg-brandOrange/10 text-brandOrange flex items-center justify-center">
+                                <i data-lucide="zap" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 font-title group-hover:text-brandOrange transition-colors">제작력 (Production)</h3>
+                        <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed mb-6">
+                            감각에 속도를 더합니다. 전문적인 마케팅 비주얼 프로덕션 노하우와 AI 기술력을 긴밀히 결합해 프로젝트 초기 단계에서 <strong class="text-slate-900 dark:text-white font-semibold">높은 퀄리티의 산출물과 프로토타입</strong>을 자체 완성합니다.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200 dark:border-brandNavy-light/60 pt-4">
+                        <span class="text-[11px] sm:text-xs text-brandOrange font-medium flex items-center gap-1.5">
+                            <i data-lucide="check" class="w-3.5 h-3.5 flex-shrink-0"></i> 멀티미디어 촬영 및 AI 기반 고속 자동화 프로덕션
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Strength Card 3: Persistence -->
+                <div class="reveal strength-card bg-white dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light p-6 sm:p-8 rounded-2xl flex flex-col justify-between group interactive-card shadow-sm" style="transition-delay: 200ms;">
+                    <div>
+                        <div class="flex items-center justify-between mb-6 sm:mb-8">
+                            <span class="text-3xl sm:text-4xl font-bold text-brandOrange/20 font-title group-hover:text-brandOrange/40 transition-colors">03</span>
+                            <div class="w-10 h-10 rounded-lg bg-brandOrange/10 text-brandOrange flex items-center justify-center">
+                                <i data-lucide="anchor" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 font-title group-hover:text-brandOrange transition-colors">끈기 (Persistence)</h3>
+                        <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed mb-6">
+                            실패를 극복하는 단단한 책임감입니다. 설계 과정의 난관과 복잡한 트랙 간 의견차 속에서도 결코 동료들을 포기하지 않으며, <strong class="text-slate-900 dark:text-white font-semibold">기어코 탁월한 가치</strong>를 마침표 찍어내는 책임감을 발휘합니다.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200 dark:border-brandNavy-light/60 pt-4">
+                        <span class="text-[11px] sm:text-xs text-brandOrange font-medium flex items-center gap-1.5">
+                            <i data-lucide="check" class="w-3.5 h-3.5 flex-shrink-0"></i> 끝장 토론과 검증을 마다 않는 끝판왕 책임감
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLABORATION FIT -->
+    <section id="collaboration-fit" class="py-24 bg-slate-100/60 dark:bg-brandNavy-dark/70 border-t border-slate-200 dark:border-brandNavy-light/40 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 reveal">
+                <span class="text-brandOrange font-bold text-xs uppercase tracking-widest font-title block mb-2">HOW WE WORK TOGETHER</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-title text-slate-900 dark:text-white leading-snug">팀에 합류하면 이렇게 일합니다</h2>
+                <div class="w-16 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 dark:text-brandGray-muted text-sm mt-5 leading-relaxed">기획과 개발의 경계를 넘나들되, 역할과 의사결정 근거는 명확하게 기록합니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="reveal bg-white dark:bg-brandNavy-light/35 border border-slate-200 dark:border-brandNavy-light rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-brandOrange/10 text-brandOrange flex items-center justify-center mb-5"><i data-lucide="briefcase-business" class="w-5 h-5"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white font-title mb-4">제가 책임질 수 있는 영역</h3>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-brandGray-muted">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brandOrange mt-0.5 flex-shrink-0"></i><span>사용자 문제 정의와 핵심 가설 정리</span></li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brandOrange mt-0.5 flex-shrink-0"></i><span>서비스 흐름, 화면 구조, 발표 스토리 설계</span></li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brandOrange mt-0.5 flex-shrink-0"></i><span>AI 기반 이미지·영상·프로토타입 제작</span></li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brandOrange mt-0.5 flex-shrink-0"></i><span>사용자 피드백을 다음 스프린트 과제로 변환</span></li>
+                    </ul>
+                </div>
+
+                <div class="reveal bg-white dark:bg-brandNavy-light/35 border border-slate-200 dark:border-brandNavy-light rounded-2xl p-6 sm:p-8 shadow-sm" style="transition-delay: 80ms;">
+                    <div class="w-11 h-11 rounded-xl bg-brandOrange/10 text-brandOrange flex items-center justify-center mb-5"><i data-lucide="workflow" class="w-5 h-5"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white font-title mb-4">협업 운영 원칙</h3>
+                    <ol class="space-y-3 text-sm text-slate-600 dark:text-brandGray-muted">
+                        <li class="flex gap-3"><span class="font-title font-bold text-brandOrange">01</span><span>문제를 기능 목록이 아니라 사용자 상황으로 합의합니다.</span></li>
+                        <li class="flex gap-3"><span class="font-title font-bold text-brandOrange">02</span><span>AI 사용 과정과 선택 근거를 기록해 결과를 재현 가능하게 만듭니다.</span></li>
+                        <li class="flex gap-3"><span class="font-title font-bold text-brandOrange">03</span><span>완벽한 문서보다 빠른 프로토타입으로 논쟁 비용을 줄입니다.</span></li>
+                        <li class="flex gap-3"><span class="font-title font-bold text-brandOrange">04</span><span>정기 데모와 회고로 막힌 지점을 숨기지 않고 조기에 공유합니다.</span></li>
+                    </ol>
+                </div>
+
+                <div class="reveal bg-gradient-to-br from-brandNavy to-brandNavy-dark border border-brandOrange/25 rounded-2xl p-6 sm:p-8 shadow-xl text-white" style="transition-delay: 160ms;">
+                    <div class="w-11 h-11 rounded-xl bg-brandOrange/15 text-brandOrange flex items-center justify-center mb-5"><i data-lucide="users-round" class="w-5 h-5"></i></div>
+                    <h3 class="text-lg font-bold font-title mb-4">함께 만들고 싶은 팀</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">기술을 보여주기 위한 기능보다, 사용자의 실제 행동을 바꾸는 서비스를 만들고 싶은 개발 동료와 잘 맞습니다.</p>
+                    <div class="flex flex-wrap gap-2 mb-7">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-slate-200">사용자 검증</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-slate-200">빠른 프로토타입</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-slate-200">기록하는 협업</span>
+                    </div>
+                    <button type="button" onclick="openProposalModal()" class="w-full py-3 rounded-xl bg-brandOrange hover:bg-brandOrange-light text-white font-bold text-xs flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> 팀 빌딩 대화 시작하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Synergy Matching Simulator -->
+    <section id="simulator" class="py-24 bg-white dark:bg-brandNavy-dark border-t border-slate-200 dark:border-brandNavy-light/40 relative overflow-hidden">
+        <div class="parallax-element absolute top-10 right-10 w-[300px] h-[300px] bg-brandOrange/5 rounded-full blur-[100px] pointer-events-none" data-speed="0.12"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+                <span class="text-brandOrange font-bold text-xs uppercase tracking-widest font-title block mb-2">INTERACTIVE SIMULATION</span>
+                <h2 class="text-xl sm:text-3xl md:text-4xl font-bold font-title text-slate-900 dark:text-white leading-snug">
+                    한범구 x [내 트랙] 시너지 매칭 시뮬레이터
+                </h2>
+                <div class="w-16 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm mt-5 leading-relaxed">
+                    SSAFY 동료 여러분의 개발 분야를 선택해 보세요.<br class="hidden sm:block">
+                    기획자 한범구와 협업했을 때 만들 수 있는 가상 프로젝트와 역할 분담 예시를 확인해 보세요.
+                </p>
+            </div>
+
+            <!-- Simulator Core Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left: Interactive Track Selection (4 cols) -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-3.5 reveal">
+                    <button type="button" onclick="runSynergySimulation('Python')" class="simulator-btn p-4 sm:p-5 rounded-2xl border text-left flex flex-col justify-between h-28 sm:h-32 lg:h-36 bg-slate-50 dark:bg-brandNavy-light/30 border-slate-200 dark:border-brandNavy-light hover:border-brandOrange hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden" id="btn-Python">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 text-blue-500 dark:text-blue-400 flex items-center justify-center">
+                            <i data-lucide="terminal" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <span class="font-title text-xs sm:text-sm font-bold text-slate-800 dark:text-white mt-4">Python</span>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-blue-500/5 rounded-bl-full"></div>
+                    </button>
+
+                    <button type="button" onclick="runSynergySimulation('Java')" class="simulator-btn p-4 sm:p-5 rounded-2xl border text-left flex flex-col justify-between h-28 sm:h-32 lg:h-36 bg-slate-50 dark:bg-brandNavy-light/30 border-slate-200 dark:border-brandNavy-light hover:border-brandOrange hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden" id="btn-Java">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-orange-500/10 text-orange-500 dark:text-orange-400 flex items-center justify-center">
+                            <i data-lucide="coffee" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <span class="font-title text-xs sm:text-sm font-bold text-slate-800 dark:text-white mt-4">Java</span>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-orange-500/5 rounded-bl-full"></div>
+                    </button>
+
+                    <button type="button" onclick="runSynergySimulation('Embedded')" class="simulator-btn p-4 sm:p-5 rounded-2xl border text-left flex flex-col justify-between h-28 sm:h-32 lg:h-36 bg-slate-50 dark:bg-brandNavy-light/30 border-slate-200 dark:border-brandNavy-light hover:border-brandOrange hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden" id="btn-Embedded">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 flex items-center justify-center">
+                            <i data-lucide="cpu" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <span class="font-title text-xs sm:text-sm font-bold text-slate-800 dark:text-white mt-4">Embedded</span>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-emerald-500/5 rounded-bl-full"></div>
+                    </button>
+
+                    <button type="button" onclick="runSynergySimulation('Mobile')" class="simulator-btn p-4 sm:p-5 rounded-2xl border text-left flex flex-col justify-between h-28 sm:h-32 lg:h-36 bg-slate-50 dark:bg-brandNavy-light/30 border-slate-200 dark:border-brandNavy-light hover:border-brandOrange hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden" id="btn-Mobile">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-pink-500/10 text-pink-500 dark:text-pink-400 flex items-center justify-center">
+                            <i data-lucide="smartphone" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <span class="font-title text-xs sm:text-sm font-bold text-slate-800 dark:text-white mt-4">Mobile</span>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-pink-500/5 rounded-bl-full"></div>
+                    </button>
+
+                    <button type="button" onclick="runSynergySimulation('Embedded Robot')" class="simulator-btn p-4 sm:p-5 rounded-2xl border text-left flex flex-col justify-between h-28 sm:h-32 lg:h-36 bg-slate-50 dark:bg-brandNavy-light/30 border-slate-200 dark:border-brandNavy-light hover:border-brandOrange hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden" id="btn-Robot">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-amber-500/10 text-amber-500 dark:text-amber-400 flex items-center justify-center">
+                            <i data-lucide="toy-brick" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <span class="font-title text-xs sm:text-sm font-bold text-slate-800 dark:text-white mt-4">Embedded Robot</span>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-amber-500/5 rounded-bl-full"></div>
+                    </button>
+
+                    <button type="button" onclick="runSynergySimulation('Data')" class="simulator-btn p-4 sm:p-5 rounded-2xl border text-left flex flex-col justify-between h-28 sm:h-32 lg:h-36 bg-slate-50 dark:bg-brandNavy-light/30 border-slate-200 dark:border-brandNavy-light hover:border-brandOrange hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden" id="btn-Data">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 flex items-center justify-center">
+                            <i data-lucide="database" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <span class="font-title text-xs sm:text-sm font-bold text-slate-800 dark:text-white mt-4">Data</span>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-cyan-500/5 rounded-bl-full"></div>
+                    </button>
+                </div>
+
+                <!-- Right: Active Terminal Simulator Console (8 cols) -->
+                <div class="lg:col-span-7 reveal w-full overflow-hidden">
+                    <div class="bg-brandNavy dark:bg-brandNavy-dark border border-slate-200 dark:border-brandNavy-light/80 rounded-3xl overflow-hidden shadow-2xl">
+                        <!-- Console Header -->
+                        <div class="bg-slate-100 dark:bg-brandNavy-light/60 px-4 sm:px-5 py-4 border-b border-slate-200 dark:border-brandNavy-light/40 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 overflow-hidden">
+                                <span class="w-3 h-3 rounded-full bg-red-400 inline-block flex-shrink-0"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-400 inline-block flex-shrink-0"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-400 inline-block flex-shrink-0"></span>
+                                <span class="text-[10px] sm:text-[11px] text-slate-500 dark:text-brandGray-muted ml-2 font-mono truncate">BumguAI_SynergyEngine_v1.7.sh</span>
+                            </div>
+                            <div class="text-[9px] sm:text-[10px] text-brandOrange font-bold tracking-widest uppercase font-mono animate-pulse flex-shrink-0">
+                                READY FOR ANALYZING
+                            </div>
+                        </div>
+
+                        <!-- Console Core Content Area -->
+                        <div class="p-5 sm:p-6 md:p-8 min-h-[300px] sm:min-h-[340px] flex flex-col justify-center" id="simulatorConsole">
+                            <!-- Idle State Message -->
+                            <div class="text-center py-6 sm:py-8" id="consoleIdleState">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-brandOrange/10 border border-brandOrange/20 text-brandOrange flex items-center justify-center mx-auto mb-5 animate-bounce">
+                                    <i data-lucide="pocket" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white font-title mb-2">시너지 매칭 엔진 대기 중</h3>
+                                <p class="text-slate-500 dark:text-brandGray-muted text-[11px] sm:text-xs max-w-sm mx-auto leading-relaxed">
+                                    좌측에서 귀하의 소속 SSAFY 개발 트랙을 누르시면, 협력 매칭 분석 데이터가 실시간으로 이곳에 출력됩니다.
+                                </p>
+                            </div>
+
+                            <!-- Processing State (Hidden by default) -->
+                            <div class="hidden flex-col justify-center space-y-4" id="consoleProcessingState">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 rounded-full border-2 border-brandOrange border-t-transparent animate-spin"></div>
+                                    <span class="text-xs font-mono text-emerald-400" id="processingStep">Loading bumgu_core_metrics...</span>
+                                </div>
+                                <div class="w-full bg-brandNavy-light/40 rounded-full h-1.5 overflow-hidden">
+                                    <div class="bg-brandOrange h-full w-0 transition-all duration-300" id="processingProgressBar"></div>
+                                </div>
+                                <div class="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-brandGray-muted space-y-1 pl-7">
+                                    <p class="truncate">&gt; [AE 기획 로그] 타겟 도메인 시장 인덱스 맵 로드 중...</p>
+                                    <p class="truncate">&gt; [AI 프로덕션 로그] 미드저니/LLM 자동화 리소스 매핑 중...</p>
+                                    <p class="truncate">&gt; [A급 시너지 연산] 트랙 기술 스택 및 데이터 파이프라인 분석...</p>
+                                </div>
+                            </div>
+
+                            <!-- Success Result Display State (Hidden by default) -->
+                            <div class="hidden flex-col text-left space-y-5" id="consoleResultState">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-brandNavy-light/60 pb-3 gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-brandOrange/20 text-brandOrange font-title" id="resTrackName">TRACK</span>
+                                        <span class="text-xs text-brandGray-muted">&times;</span>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-white">한범구 (AE+AI)</span>
+                                    </div>
+                                    <span class="text-emerald-500 dark:text-emerald-400 text-xs font-bold font-mono">추천 조합 생성 완료</span>
+                                </div>
+
+                                <div>
+                                    <div class="text-[9px] sm:text-[10px] uppercase text-brandOrange font-bold tracking-wider font-title mb-1">PROPOSED SYNERGY PROJECT</div>
+                                    <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-title" id="resProjectName">프로젝트 가안</h4>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-brandNavy-light/30 border border-slate-200 dark:border-brandNavy-light/40">
+                                        <div class="text-[9px] text-brandOrange font-bold mb-1 uppercase tracking-wider font-title">BUMGU'S ROLE (기획 & AI)</div>
+                                        <p class="text-slate-600 dark:text-brandGray-muted text-[11px] leading-relaxed" id="resBumguRole">기획자 역할</p>
+                                    </div>
+                                    <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-brandNavy-light/30 border border-slate-200 dark:border-brandNavy-light/40">
+                                        <div class="text-[9px] text-cyan-600 dark:text-cyan-400 font-bold mb-1 uppercase tracking-wider font-title">YOUR ROLE (개발 & 아키텍처)</div>
+                                        <p class="text-slate-600 dark:text-brandGray-muted text-[11px] leading-relaxed" id="resYourRole">개발자 역할</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-500/15 text-emerald-500 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                                        <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                    </div>
+                                    <p class="text-slate-700 dark:text-brandGray-light text-[11px] leading-normal" id="resSmsOutput">예상 성과 요약</p>
+                                </div>
+
+                                <button type="button" onclick="openProposalModal()" class="w-full py-3.5 rounded-xl bg-brandOrange hover:bg-brandOrange-light text-white font-bold text-xs flex items-center justify-center gap-2 transition-transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-brandOrange/10">
+                                    <i data-lucide="zap" class="w-3.5 h-3.5"></i> 이 프로젝트로 팀 빌딩 대화 시작하기
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Synergy & CTA Section -->
+    <section id="synergy" class="py-24 bg-slate-50 dark:bg-gradient-to-b dark:from-brandNavy-dark dark:to-brandNavy relative overflow-hidden">
+        
+        <!-- Ambient background radial glows (Parallax Applied) -->
+        <div class="parallax-element absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-brandOrange/5 rounded-full blur-[120px] pointer-events-none" data-speed="0.1"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="reveal">
+                <span class="text-brandOrange font-bold text-xs uppercase tracking-widest font-title block mb-2">SSAFY SYNERGY</span>
+                <h2 class="text-xl sm:text-2xl md:text-4xl font-bold font-title text-slate-900 dark:text-white mb-6 leading-snug">
+                    SSAFY 최고의 파트너가 될 준비를 마쳤습니다
+                </h2>
+                <p class="text-slate-600 dark:text-brandGray-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-12 font-light px-2">
+                    혼자 가면 단순한 한계에 부딪히지만, 개발 트랙의 정교한 기술력과 완벽히 융합될 때 가치가 극대화됩니다.<br>
+                    프로젝트의 매력을 최고의 결과물로 증명해낼 A급 기획자 한범구와 시너지를 만들어보세요!
+                </p>
+            </div>
+
+            <!-- Contact Box Inside Main UI -->
+            <div class="reveal bg-white dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light p-6 sm:p-8 md:p-12 rounded-3xl max-w-3xl mx-auto text-left shadow-2xl">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 font-title flex items-center gap-2">
+                    <span class="inline-block w-2 h-6 bg-brandOrange rounded-full"></span>
+                    다이렉트 연락망
+                </h3>
+                <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm leading-relaxed mb-8">
+                    버튼을 클릭하여 Mattermost 계정 정보를 신속하게 복사하거나, 협업 제안서 모달을 통해 팀 빌딩 제안 메시지를 간편히 남겨주세요.
+                </p>
+
+                <!-- Contact Channels -->
+                <div class="grid grid-cols-1 gap-4 mb-8">
+                    <div class="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-brandNavy-dark/60 border border-slate-200 dark:border-brandNavy-light flex items-center gap-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brandOrange/10 text-brandOrange flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="message-square" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div class="text-[9px] sm:text-[10px] text-slate-400 dark:text-brandGray-muted uppercase font-semibold">Mattermost 주소</div>
+                            <div class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white truncate">서울 7반 한범구</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copy & Action Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <button type="button" onclick="copyMailToClipboard()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brandOrange hover:bg-brandOrange-light text-white font-bold transition-all text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-brandOrange/20 hover:scale-105 active:scale-95">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Mattermost 주소 복사하기
+                    </button>
+                    <button type="button" onclick="openProposalModal()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-200 dark:bg-brandNavy-dark hover:bg-slate-300 dark:hover:bg-brandNavy text-slate-700 dark:text-brandGray-muted hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-brandNavy-light text-xs sm:text-sm font-semibold transition-all text-center hover:scale-105 active:scale-95">
+                        협업 제안서 남기기
+                    </button>
+                </div>
+
+                <!-- Toast feedback container -->
+                <div id="toast" role="status" aria-live="polite" class="opacity-0 translate-y-2 pointer-events-none mt-4 p-3 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 text-xs font-semibold flex items-center gap-2 transition-all duration-300">
+                    <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>Mattermost 주소(서울 7반 한범구)가 성공적으로 복사되었습니다!</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GUESTBOOK SECTION -->
+    <section id="guestbook-section" class="py-24 bg-slate-100/40 dark:bg-brandNavy-dark/50 border-t border-slate-200 dark:border-brandNavy-light/40 relative overflow-hidden">
+        <div class="parallax-element absolute top-10 left-1/2 w-[350px] h-[350px] bg-brandOrange/5 rounded-full blur-[100px] pointer-events-none" data-speed="0.08"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="max-w-3xl mb-12 sm:mb-16 reveal">
+                <span class="text-brandOrange font-bold text-xs sm:text-sm uppercase tracking-widest font-title block mb-2">SSAFY NETWORKING HUB</span>
+                <h2 class="text-xl sm:text-2xl md:text-4xl font-bold font-title text-slate-900 dark:text-white leading-snug">동료 네트워킹 방명록 데모</h2>
+                <div class="w-16 h-1 bg-brandOrange mt-4 rounded-full"></div>
+                <p class="text-slate-600 dark:text-brandGray-muted text-xs sm:text-sm mt-4 leading-relaxed">
+                    SSAFY 교육생 여러분, 자유롭게 인사 글이나 소속 링크/파일을 첨부하여 흔적을 남겨주세요.<br>
+                    현재 데모 버전의 네트워킹 정보는 이 브라우저에만 저장됩니다. 실제 다중 사용자 공유에는 별도의 서버와 데이터베이스 연결이 필요합니다.
+                </p>
+            </div>
+
+            <!-- Two-Column Layout: Form on Left, List on Right -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                <!-- Left: Write Form -->
+                <div class="lg:col-span-5 reveal bg-white dark:bg-brandNavy-light/30 border border-slate-200 dark:border-brandNavy-light/80 p-5 sm:p-6 md:p-8 rounded-3xl shadow-xl">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-6 font-title flex items-center gap-2">
+                        <i data-lucide="edit-3" class="w-4.5 h-4.5 sm:w-5 sm:h-5 text-brandOrange"></i> 방명록 남기기
+                    </h3>
+                    
+                    <form id="guestbookForm" onsubmit="handleGuestbookSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] sm:text-[11px] font-semibold text-brandOrange tracking-wider uppercase mb-1" for="gbName">닉네임 / 이름 *</label>
+                                <input type="text" id="gbName" required maxlength="30" autocomplete="name" class="w-full bg-slate-50 dark:bg-brandNavy-dark/80 border border-slate-200 dark:border-brandNavy-light/80 text-slate-900 dark:text-white text-xs rounded-xl px-3.5 py-3 focus:outline-none focus:border-brandOrange transition-colors" placeholder="예: 코딩조아">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] sm:text-[11px] font-semibold text-brandOrange tracking-wider uppercase mb-1" for="gbTrack">소속 트랙 *</label>
+                                <div class="relative">
+                                    <select id="gbTrack" required class="w-full bg-slate-50 dark:bg-brandNavy-dark/80 border border-slate-200 dark:border-brandNavy-light/80 text-slate-900 dark:text-white text-xs rounded-xl px-3.5 py-3 focus:outline-none focus:border-brandOrange transition-colors appearance-none pr-8">
+                                        <option value="Python">Python</option>
+                                        <option value="Java" selected>Java</option>
+                                        <option value="Embedded">Embedded</option>
+                                        <option value="Mobile">Mobile</option>
+                                        <option value="Embedded Robot">Embedded Robot</option>
+                                        <option value="Data">Data</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400 dark:text-brandGray-muted">
+                                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selectable Networking Tags Chips -->
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-semibold text-brandOrange tracking-wider uppercase mb-1.5">네트워킹 퀵 태그 선택 (선택)</label>
+                            <div class="flex flex-wrap gap-1.5 sm:gap-2" id="gbTagContainer">
+                                <button type="button" onclick="selectGuestbookTag(this, '#팀원구함')" class="gb-tag-btn px-2.5 py-1.5 rounded-full border border-slate-200 dark:border-brandNavy-light text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-brandGray-muted hover:border-brandOrange hover:text-brandOrange transition-all bg-transparent">#팀원구함</button>
+                                <button type="button" onclick="selectGuestbookTag(this, '#아이디어있음')" class="gb-tag-btn px-2.5 py-1.5 rounded-full border border-slate-200 dark:border-brandNavy-light text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-brandGray-muted hover:border-brandOrange hover:text-brandOrange transition-all bg-transparent">#아이디어있음</button>
+                                <button type="button" onclick="selectGuestbookTag(this, '#커피챗환영')" class="gb-tag-btn px-2.5 py-1.5 rounded-full border border-slate-200 dark:border-brandNavy-light text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-brandGray-muted hover:border-brandOrange hover:text-brandOrange transition-all bg-transparent">#커피챗환영</button>
+                                <button type="button" onclick="selectGuestbookTag(this, '#친목도모')" class="gb-tag-btn px-2.5 py-1.5 rounded-full border border-slate-200 dark:border-brandNavy-light text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-brandGray-muted hover:border-brandOrange hover:text-brandOrange transition-all bg-transparent">#친목도모</button>
+                            </div>
+                            <input type="hidden" id="gbSelectedTag" value="">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-semibold text-brandOrange tracking-wider uppercase mb-1" for="gbIntro">짧은 자기소개 *</label>
+                            <textarea id="gbIntro" required maxlength="300" rows="3" class="w-full bg-slate-50 dark:bg-brandNavy-dark/80 border border-slate-200 dark:border-brandNavy-light/80 text-slate-900 dark:text-white text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brandOrange transition-colors resize-none" placeholder="협업 성향이나 재미있는 한마디를 나누어보세요!"></textarea>
+                        </div>
+
+                        <!-- Password for deletion -->
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-semibold text-brandOrange tracking-wider uppercase mb-1" for="gbPassword">삭제용 비밀번호 *</label>
+                            <input type="password" id="gbPassword" required inputmode="numeric" pattern="[0-9]{4}" minlength="4" maxlength="4" autocomplete="new-password" class="w-full bg-slate-50 dark:bg-brandNavy-dark/80 border border-slate-200 dark:border-brandNavy-light/80 text-slate-900 dark:text-white text-xs rounded-xl px-3.5 py-3 focus:outline-none focus:border-brandOrange transition-colors" placeholder="삭제 시 사용할 4자리 숫자">
+                        </div>
+
+                        <!-- File attachment mechanism -->
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-semibold text-brandOrange tracking-wider uppercase mb-1">
+                                내 파일 첨부 데모 (선택) 
+                                <span class="text-slate-400 dark:text-brandGray-muted text-[9px] sm:text-[10px] ml-1 lowercase">(현재 브라우저에만 저장 / 최대 300KB)</span>
+                            </label>
+                            
+                            <!-- Custom File Upload Button -->
+                            <div class="relative mt-1">
+                                <input type="file" id="gbFile" accept=".pdf,.txt,.png,.jpg,.jpeg,.webp,application/pdf,text/plain,image/png,image/jpeg,image/webp" onchange="handleFileSelection(event)" class="hidden">
+                                <label for="gbFile" class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl border border-dashed border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/60 bg-slate-50 dark:bg-brandNavy-dark/40 hover:bg-slate-100 dark:hover:bg-brandNavy-dark/80 text-slate-500 dark:text-brandGray-muted hover:text-slate-800 dark:hover:text-white cursor-pointer transition-all text-xs font-medium">
+                                    <i data-lucide="paperclip" class="w-4 h-4 text-brandOrange flex-shrink-0" id="uploadIcon"></i>
+                                    <span id="uploadLabel" class="truncate">파일 선택하기 (PDF, TXT, PNG, JPG)</span>
+                                </label>
+                            </div>
+                            <p id="fileWarning" class="hidden text-[10px] text-red-500 mt-1.5 flex items-center gap-1">
+                                <i data-lucide="alert-triangle" class="w-3 h-3 flex-shrink-0"></i><span>300KB 이하의 파일만 현재 브라우저에 저장할 수 있습니다.</span>
+                            </p>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 rounded-xl bg-brandOrange hover:bg-brandOrange-light text-white font-bold transition-all text-xs flex items-center justify-center gap-2 shadow-lg shadow-brandOrange/15 hover:scale-[1.01] active:scale-[0.99] mt-2 h-11">
+                            <i data-lucide="check" class="w-4 h-4"></i> 방명록 등록하기
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right: Live Guestbook Post Cards List -->
+                <div class="lg:col-span-7 flex flex-col w-full overflow-hidden">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-title flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-4.5 h-4.5 sm:w-5 sm:h-5 text-brandOrange"></i> 등록된 네트워킹 카드 (<span id="guestbookCount">0</span>)
+                        </h3>
+                        <button type="button" onclick="clearAllGuestbookMock()" class="text-[10px] self-start sm:self-auto text-slate-400 dark:text-brandGray-muted hover:text-red-400 dark:hover:text-red-400 transition-colors flex items-center gap-1">
+                            <i data-lucide="trash" class="w-3.5 h-3.5"></i> 전체 초기화
+                        </button>
+                    </div>
+
+                    <!-- Active Filtering Tabs/Chips for Tags -->
+                    <div class="flex flex-wrap gap-1.5 mb-5 items-center border-b border-slate-200 dark:border-brandNavy-light/50 pb-4 overflow-x-auto scrollbar-none">
+                        <span class="text-[10px] sm:text-[11px] font-semibold text-slate-400 dark:text-brandGray-muted mr-1 flex-shrink-0">태그 필터:</span>
+                        <button type="button" onclick="filterGuestbookByTag('전체')" class="filter-tag-btn px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold bg-brandOrange text-white border border-brandOrange transition-all flex-shrink-0" id="filter-all">전체</button>
+                        <button type="button" onclick="filterGuestbookByTag('#팀원구함')" class="filter-tag-btn px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-100 dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/40 text-slate-500 dark:text-brandGray-muted transition-all flex-shrink-0">#팀원구함</button>
+                        <button type="button" onclick="filterGuestbookByTag('#아이디어있음')" class="filter-tag-btn px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-100 dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/40 text-slate-500 dark:text-brandGray-muted transition-all flex-shrink-0">#아이디어있음</button>
+                        <button type="button" onclick="filterGuestbookByTag('#커피챗환영')" class="filter-tag-btn px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-100 dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/40 text-slate-500 dark:text-brandGray-muted transition-all flex-shrink-0">#커피챗환영</button>
+                        <button type="button" onclick="filterGuestbookByTag('#친목도모')" class="filter-tag-btn px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-100 dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/40 text-slate-500 dark:text-brandGray-muted transition-all flex-shrink-0">#친목도모</button>
+                    </div>
+
+                    <!-- Cards Container -->
+                    <div id="guestbookList" class="space-y-4 max-h-[500px] overflow-y-auto pr-1 custom-scrollbar">
+                        <!-- Guestbook cards loaded dynamically here -->
+                        <div class="text-center py-12 text-slate-400 dark:text-brandGray-muted text-xs border border-dashed border-slate-200 dark:border-brandNavy-light rounded-2xl bg-white dark:bg-transparent">
+                            아직 등록된 방명록이 없습니다. 첫 흔적을 가장 먼저 남겨보세요!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUESTBOOK PASSWORD VERIFICATION MODAL -->
+    <div id="deleteVerifyModal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 dark:bg-brandNavy-dark/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="relative bg-white dark:bg-brandNavy-light border border-slate-200 dark:border-brandNavy-light/90 w-full max-w-sm rounded-2xl p-6 shadow-2xl scale-95 transition-all transform max-h-[90vh] overflow-y-auto" id="deleteCard">
+            <h4 id="deleteModalTitle" class="text-base font-bold text-slate-900 dark:text-white mb-2 font-title flex items-center gap-1.5">
+                <i data-lucide="lock" class="w-4.5 h-4.5 text-brandOrange"></i> 카드 삭제 비밀번호 확인
+            </h4>
+            <p class="text-slate-500 dark:text-brandGray-muted text-xs leading-relaxed mb-4">
+                등록 시 작성했던 4자리 비밀번호를 입력해 주세요.
+            </p>
+            <input type="password" id="deletePasswordInput" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="current-password" class="w-full bg-slate-50 dark:bg-brandNavy-dark border border-slate-200 dark:border-brandNavy-light text-slate-900 dark:text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-brandOrange transition-colors mb-4 h-11" placeholder="비밀번호 입력">
+            
+            <div class="flex items-center gap-3">
+                <button type="button" onclick="closeDeleteModal()" class="w-1/2 py-2.5 rounded-xl bg-slate-200 dark:bg-brandNavy-dark text-xs font-semibold border border-slate-300 dark:border-brandNavy-light text-slate-600 dark:text-brandGray-muted hover:text-slate-900 dark:hover:text-white transition-colors h-11">
+                    취소
+                </button>
+                <button type="button" onclick="confirmDeleteEntry()" class="w-1/2 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-xs font-semibold text-white transition-colors h-11">
+                    확인 후 삭제
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREMIUM INTERACTIVE MODAL POPUP -->
+    <div id="proposalModal" role="dialog" aria-modal="true" aria-labelledby="proposalModalTitle" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 dark:bg-brandNavy-dark/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="relative bg-white dark:bg-brandNavy-light border border-slate-200 dark:border-brandNavy-light/80 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl scale-95 transition-all duration-300 transform max-h-[90vh] overflow-y-auto" id="modalCard">
+            <!-- Modal Header -->
+            <div class="p-6 md:p-8 border-b border-slate-200 dark:border-brandNavy-light/50 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-6 bg-brandOrange rounded-full"></div>
+                    <h3 id="proposalModalTitle" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-title">협업 파트너 제안하기</h3>
+                </div>
+                <button type="button" onclick="closeProposalModal()" class="text-slate-500 hover:text-slate-900 dark:text-brandGray-muted dark:hover:text-white transition-colors" aria-label="모달 닫기">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content / Form Area -->
+            <div class="p-6 md:p-8" id="modalFormContainer">
+                <form id="collaborationForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-brandOrange tracking-wider uppercase mb-1.5" for="senderName">성함 또는 SSAFY 닉네임 *</label>
+                        <input type="text" id="senderName" required maxlength="30" autocomplete="name" class="w-full bg-slate-50 dark:bg-brandNavy-dark/60 border border-slate-200 dark:border-brandNavy-light text-slate-900 dark:text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-brandOrange transition-colors h-11" placeholder="예: 길동님 / 데이터_7기">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-brandOrange tracking-wider uppercase mb-1.5" for="senderRole">소속 트랙 *</label>
+                        <div class="relative">
+                            <select id="senderRole" required class="w-full bg-slate-50 dark:bg-brandNavy-dark/60 border border-slate-200 dark:border-brandNavy-light text-slate-900 dark:text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-brandOrange transition-colors appearance-none pr-10 h-11">
+                                <option value="" disabled selected class="text-slate-400 dark:text-brandGray-muted">트랙을 선택해주세요</option>
+                                <option value="Python">Python</option>
+                                <option value="Java">Java</option>
+                                <option value="Embedded">Embedded</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Embedded Robot">Embedded Robot</option>
+                                <option value="Data">Data</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400 dark:text-brandGray-muted">
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-brandOrange tracking-wider uppercase mb-1.5" for="proposalMessage">한 줄 제안 및 인사글 *</label>
+                        <textarea id="proposalMessage" required maxlength="500" rows="3" class="w-full bg-slate-50 dark:bg-brandNavy-dark/60 border border-slate-200 dark:border-brandNavy-light text-slate-900 dark:text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-brandOrange transition-colors resize-none" placeholder="어떤 흥미로운 프로젝트를 함께 만들어볼지 간단히 들려주세요."></textarea>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-brandOrange hover:bg-brandOrange-light text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-lg shadow-brandOrange/20 hover:scale-[1.02] active:scale-[0.98] h-12">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Mattermost용 제안 메시지 복사하기
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Success Feedback State -->
+            <div class="hidden p-8 text-center flex-col items-center justify-center" id="modalSuccessContainer">
+                <div class="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 flex items-center justify-center mb-6 animate-bounce">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 font-title">제안 메시지가 복사되었습니다!</h4>
+                <p class="text-slate-500 dark:text-brandGray-muted text-sm leading-relaxed max-w-sm mb-6">
+                    실제 전송 기능이 없는 정적 페이지이므로, 작성한 내용이 클립보드에 복사되었습니다. Mattermost에서 ‘서울 7반 한범구’를 찾아 붙여넣어 주세요.
+                </p>
+                <button type="button" onclick="closeProposalModal()" class="px-6 py-2.5 rounded-full bg-slate-100 dark:bg-brandNavy-dark hover:bg-slate-200 dark:hover:bg-brandNavy text-sm text-slate-800 dark:text-white border border-slate-200 dark:border-brandNavy-light font-medium transition-colors">
+                    창 닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-brandNavy-dark border-t border-slate-200 dark:border-brandNavy-light/50 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-lg bg-brandOrange text-white flex items-center justify-center font-title font-bold text-xs">
+                    HB
+                </div>
+                <span class="font-title text-sm tracking-wide text-slate-500 dark:text-brandGray-muted">
+                    HAN BUMGU<span class="text-brandOrange">.</span> A-Grade Planner & AI Creator
+                </span>
+            </div>
+            
+            <p class="text-xs text-slate-400 dark:text-brandGray-muted/50 text-center md:text-right">
+                © 2026 SSAFY Planner Han Bumgu Portfolio. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <!-- Interactive Scripts & Features -->
+    <script>
+        // 1. Initialize Lucide Icons dynamically
+        lucide.createIcons();
+
+        // 2. Dark & Light Mode Toggle Engine (Upgraded)
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleBtnMobile = document.getElementById('themeToggleBtnMobile');
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('themeMode', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('themeMode', 'dark');
+            }
+            // Trigger icon refresh
+            lucide.createIcons();
+            
+            // Re-render particles color instantly so the canvas updates without refreshing
+            updateParticleColorsForTheme();
+        }
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if (themeToggleBtnMobile) themeToggleBtnMobile.addEventListener('click', toggleTheme);
+
+        // Theme class is applied in <head> to avoid a flash during startup.
+        lucide.createIcons();
+
+        // 3. Mobile Nav Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                mobileMenuBtn.setAttribute('aria-label', '메뉴 닫기');
+                mobileMenuBtn.innerHTML = `<i data-lucide="x" class="w-6 h-6 text-slate-900 dark:text-white"></i>`;
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', '메뉴 열기');
+                mobileMenuBtn.innerHTML = `<i data-lucide="menu" class="w-6 h-6 text-slate-900 dark:text-white"></i>`;
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile dropdown menu upon item click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', '메뉴 열기');
+                mobileMenuBtn.innerHTML = `<i data-lucide="menu" class="w-6 h-6 text-slate-900 dark:text-white"></i>`;
+                lucide.createIcons();
+            });
+        });
+
+        // 4. Scroll Indicator Progress Bar & Multi-layer Parallax Engine
+        const scrollBar = document.getElementById('scrollProgressBar');
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        const parallaxGridBg = document.getElementById('parallaxGridBg');
+
+        let scrollTicking = false;
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        function updateScrollEffects() {
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            scrollBar.style.width = docHeight > 0 ? `${(scrollY / docHeight) * 100}%` : '0%';
+
+            if (!reducedMotionQuery.matches && window.innerWidth > 768) {
+                parallaxElements.forEach(el => {
+                    const speed = Number.parseFloat(el.dataset.speed) || 0.1;
+                    el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+                });
+                if (parallaxGridBg) parallaxGridBg.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
+            }
+            scrollTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                scrollTicking = true;
+                requestAnimationFrame(updateScrollEffects);
+            }
+        }, { passive: true });
+        updateScrollEffects();
+
+        // 5. Scroll Reveal Animations (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // 6. Modal (Popup) Trigger Handlers
+        const proposalModal = document.getElementById('proposalModal');
+        const modalCard = document.getElementById('modalCard');
+        const modalFormContainer = document.getElementById('modalFormContainer');
+        const modalSuccessContainer = document.getElementById('modalSuccessContainer');
+        let lastFocusedElement = null;
+        let lastSelectedTrack = '';
+        let lastSelectedProject = '';
+
+        function openProposalModal() {
+            lastFocusedElement = document.activeElement;
+            modalFormContainer.classList.remove('hidden');
+            modalSuccessContainer.classList.add('hidden');
+            modalSuccessContainer.classList.remove('flex');
+            document.getElementById('collaborationForm').reset();
+            if (lastSelectedTrack) document.getElementById('senderRole').value = lastSelectedTrack;
+            if (lastSelectedProject) document.getElementById('proposalMessage').value = `시뮬레이터에서 본 “${lastSelectedProject}” 아이디어로 이야기 나누고 싶습니다.`;
+
+            proposalModal.classList.remove('opacity-0', 'pointer-events-none');
+            proposalModal.classList.add('opacity-100');
+            modalCard.classList.remove('scale-95');
+            modalCard.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+            window.setTimeout(() => document.getElementById('senderName').focus(), 50);
+        }
+
+        function closeProposalModal() {
+            proposalModal.classList.remove('opacity-100');
+            proposalModal.classList.add('opacity-0', 'pointer-events-none');
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-95');
+            document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        proposalModal.addEventListener('click', (e) => {
+            if (e.target === proposalModal) closeProposalModal();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') return;
+            if (!proposalModal.classList.contains('pointer-events-none')) closeProposalModal();
+            if (!deleteVerifyModal?.classList.contains('pointer-events-none')) closeDeleteModal();
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('senderName').value.trim();
+            const role = document.getElementById('senderRole').value;
+            const message = document.getElementById('proposalMessage').value.trim();
+            const proposalText = `[SSAFY 협업 제안]
+이름: ${name}
+트랙: ${role}
+제안: ${message}`;
+
+            const copied = await copyTextToClipboard(proposalText);
+            if (!copied) {
+                showDynamicToast('복사하지 못했습니다. 입력 내용을 직접 선택해 복사해 주세요.');
+                return;
+            }
+            modalFormContainer.classList.add('hidden');
+            modalSuccessContainer.classList.remove('hidden');
+            modalSuccessContainer.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        // 7. Hero Interactive Canvas Background (with dynamic Scroll Parallax for Center Y)
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let animationFrameId = null;
+        let canvasIsVisible = true;
+
+        function desiredParticleCount() {
+            if (reducedMotionQuery.matches) return 0;
+            if (window.innerWidth < 640) return 24;
+            if (window.innerWidth < 1024) return 42;
+            return 58;
+        }
+
+        function syncParticleCount() {
+            const target = desiredParticleCount();
+            while (particles.length < target) particles.push(new NetworkNode());
+            if (particles.length > target) particles.length = target;
+        }
+
+        function resizeCanvas() {
+            const width = canvas.parentElement.clientWidth;
+            const height = canvas.parentElement.clientHeight;
+            const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            canvas.logicalWidth = width;
+            canvas.logicalHeight = height;
+            syncParticleCount();
+        }
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+        window.addEventListener('orientationchange', resizeCanvas, { passive: true });
+
+        class NetworkNode {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * (canvas.logicalWidth || canvas.clientWidth);
+                this.y = Math.random() * (canvas.logicalHeight || canvas.clientHeight);
+                this.vx = (Math.random() - 0.5) * 0.7;
+                this.vy = (Math.random() - 0.5) * 0.7;
+                this.size = Math.random() * 2.5 + 1;
+                this.assignColor();
+            }
+
+            assignColor() {
+                const isDark = document.documentElement.classList.contains('dark');
+                // Orange active nodes, others match light/dark border colors
+                this.color = Math.random() > 0.4 ? '#F97316' : (isDark ? '#1E293B' : '#CBD5E1');
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > (canvas.logicalWidth || canvas.clientWidth)) this.vx *= -1;
+                if (this.y < 0 || this.y > (canvas.logicalHeight || canvas.clientHeight)) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                if (this.color === '#F97316') {
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = '#F97316';
+                }
+                ctx.fill();
+                ctx.shadowBlur = 0; 
+            }
+        }
+
+        // Instantly adapt non-orange particles when the theme is toggled
+        function updateParticleColorsForTheme() {
+            particles.forEach(p => p.assignColor());
+        }
+
+        resizeCanvas();
+
+        let rotateAngle = 0;
+
+        function animate() {
+            if (document.hidden || !canvasIsVisible || reducedMotionQuery.matches) {
+                animationFrameId = null;
+                return;
+            }
+            const width = canvas.logicalWidth || canvas.clientWidth;
+            const height = canvas.logicalHeight || canvas.clientHeight;
+            ctx.clearRect(0, 0, width, height);
+
+            const centerX = width / 2;
+            const centerY = (height / 2) + (window.scrollY * 0.15);
+            
+            // Scaled radius based on viewport width for strict mobile limits
+            const mobileScaleFactor = window.innerWidth < 640 ? 0.38 : 0.28;
+            const radius = Math.max(0, Math.min(width, height) * mobileScaleFactor);
+            const isDark = document.documentElement.classList.contains('dark');
+
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotateAngle);
+            rotateAngle += 0.0008; 
+
+            // Outer ring
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = isDark ? 'rgba(249, 115, 22, 0.12)' : 'rgba(249, 115, 22, 0.22)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Inner ring
+            const innerRadius = Math.max(0, radius - 15);
+            ctx.beginPath();
+            ctx.arc(0, 0, innerRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = isDark ? 'rgba(30, 41, 59, 0.35)' : 'rgba(203, 213, 225, 0.6)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Tech shutter blades
+            for (let i = 0; i < 8; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                const angleRad = (Math.PI / 4) * i;
+                ctx.lineTo(Math.cos(angleRad) * radius, Math.sin(angleRad) * radius);
+                ctx.strokeStyle = isDark ? 'rgba(249, 115, 22, 0.04)' : 'rgba(249, 115, 22, 0.07)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            // Connect nearest AI nodes smoothly
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distSquared = dx * dx + dy * dy;
+
+                    // Compare squared distances first to avoid thousands of unnecessary square roots.
+                    const maxDist = window.innerWidth < 640 ? 105 : 150;
+                    if (distSquared < maxDist * maxDist) {
+                        const dist = Math.sqrt(distSquared);
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        
+                        const opacity = (1 - (dist / maxDist)) * 0.12;
+                        ctx.strokeStyle = isDark ? `rgba(148, 163, 184, ${opacity})` : `rgba(71, 85, 105, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function startCanvasAnimation() {
+            if (!animationFrameId && !document.hidden && canvasIsVisible && !reducedMotionQuery.matches) {
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        }
+
+        const canvasObserver = new IntersectionObserver(([entry]) => {
+            canvasIsVisible = entry.isIntersecting;
+            if (canvasIsVisible) startCanvasAnimation();
+        }, { threshold: 0.01 });
+        canvasObserver.observe(canvas);
+        document.addEventListener('visibilitychange', startCanvasAnimation);
+        reducedMotionQuery.addEventListener?.('change', () => {
+            resizeCanvas();
+            if (!reducedMotionQuery.matches) startCanvasAnimation();
+        });
+
+        // ==========================================
+        // 8. DYNAMIC TYPING EFFECT LOGIC
+        // ==========================================
+        const typingHero = document.getElementById('typing-hero');
+        const words = ["문제를 구조화하는", "AI로 빠르게 검증하는", "팀의 언어를 연결하는", "끝까지 완수하는"];
+        let wordIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+
+        function typeEffect() {
+            const currentWord = words[wordIdx];
+            if (isDeleting) {
+                typingHero.innerText = currentWord.substring(0, charIdx - 1);
+                charIdx--;
+                typingSpeed = 75; // Faster deletion for dynamic feel
+            } else {
+                typingHero.innerText = currentWord.substring(0, charIdx + 1);
+                charIdx++;
+                typingSpeed = 150; // Standard typing rhythm
+            }
+
+            if (!isDeleting && charIdx === currentWord.length) {
+                isDeleting = true;
+                typingSpeed = 2200; // Keep the full word readable for 2.2s
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                wordIdx = (wordIdx + 1) % words.length;
+                typingSpeed = 400; // Brief delay before typing next word
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+
+        window.addEventListener('load', () => {
+            renderGuestbook();
+            if (reducedMotionQuery.matches) {
+                typingHero.innerText = words[0];
+            } else {
+                typeEffect();
+                startCanvasAnimation();
+            }
+        });
+
+        // 9. Clipboard helpers
+        async function copyTextToClipboard(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    return true;
+                }
+                const tempInput = document.createElement('textarea');
+                tempInput.value = text;
+                tempInput.setAttribute('readonly', '');
+                tempInput.style.position = 'fixed';
+                tempInput.style.opacity = '0';
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                const copied = document.execCommand('copy');
+                tempInput.remove();
+                return copied;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        async function copyMailToClipboard() {
+            const copied = await copyTextToClipboard('서울 7반 한범구');
+            showDynamicToast(copied ? 'Mattermost 주소(서울 7반 한범구)가 복사되었습니다.' : '복사하지 못했습니다. “서울 7반 한범구”를 직접 복사해 주세요.');
+        }
+
+        // ==========================================
+        // 10. LOCAL STORAGE GUESTBOOK LOGIC & TAG FILTERING
+        // ==========================================
+        
+        let guestbookData = [];
+        try {
+            const savedGuestbook = JSON.parse(localStorage.getItem('ssafyGuestbook') || '[]');
+            guestbookData = Array.isArray(savedGuestbook) ? savedGuestbook : [];
+        } catch (_) {
+            guestbookData = [];
+        }
+        let selectedFileBase64 = null;
+        let selectedFileName = null;
+        let selectedFileType = null;
+        let entryIdToDelete = null;
+        let activeTagFilter = '전체'; // Global Active Filter State
+        const allowedFileTypes = new Set(['application/pdf', 'text/plain', 'image/png', 'image/jpeg', 'image/webp']);
+
+        function escapeHtml(value = '') {
+            return String(value).replace(/[&<>'"]/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            })[char]);
+        }
+
+        function getSafeDataUrl(value = '') {
+            const dataUrl = String(value);
+            return /^data:(application\/pdf|text\/plain|image\/png|image\/jpeg|image\/webp);base64,/i.test(dataUrl)
+                ? dataUrl
+                : '';
+        }
+
+        async function hashPassword(password) {
+            if (!window.crypto?.subtle) return password;
+            const data = new TextEncoder().encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer), byte => byte.toString(16).padStart(2, '0')).join('');
+        }
+
+        function persistGuestbook() {
+            try {
+                localStorage.setItem('ssafyGuestbook', JSON.stringify(guestbookData));
+                return true;
+            } catch (_) {
+                showDynamicToast('브라우저 저장 공간이 부족합니다. 첨부 파일을 제거하거나 기존 카드를 삭제해 주세요.');
+                return false;
+            }
+        }
+
+        // 10a. Selectable Quick Tags in the form
+        function selectGuestbookTag(buttonElement, tagString) {
+            const hiddenInput = document.getElementById('gbSelectedTag');
+            const siblingButtons = document.querySelectorAll('.gb-tag-btn');
+
+            // Toggle selection
+            if (hiddenInput.value === tagString) {
+                // If clicking the already selected tag, deselect it
+                hiddenInput.value = "";
+                buttonElement.classList.remove('border-brandOrange', 'text-brandOrange', 'bg-brandOrange/5');
+            } else {
+                // Settle new selection
+                siblingButtons.forEach(btn => {
+                    btn.classList.remove('border-brandOrange', 'text-brandOrange', 'bg-brandOrange/5');
+                });
+                hiddenInput.value = tagString;
+                buttonElement.classList.add('border-brandOrange', 'text-brandOrange', 'bg-brandOrange/5');
+            }
+        }
+
+        // 10b. Filter cards from the live view list
+        function filterGuestbookByTag(tagFilter) {
+            activeTagFilter = tagFilter;
+            
+            // Highlight active tab
+            const filterButtons = document.querySelectorAll('.filter-tag-btn');
+            filterButtons.forEach(btn => {
+                const btnText = btn.innerText;
+                if (btnText === tagFilter) {
+                    btn.className = "filter-tag-btn px-3 py-1 rounded-full text-[10px] font-bold bg-brandOrange text-white border border-brandOrange transition-all shadow-md flex-shrink-0";
+                } else {
+                    btn.className = "filter-tag-btn px-3 py-1 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-brandNavy-light/40 border border-slate-200 dark:border-brandNavy-light hover:border-brandOrange/40 text-slate-500 dark:text-brandGray-muted transition-all flex-shrink-0";
+                }
+            });
+
+            renderGuestbook();
+        }
+
+        // Custom File Input Change Interceptor
+        function handleFileSelection(event) {
+            const file = event.target.files[0];
+            const uploadLabel = document.getElementById('uploadLabel');
+            const uploadIcon = document.getElementById('uploadIcon');
+            const fileWarning = document.getElementById('fileWarning');
+
+            if (!file) {
+                selectedFileBase64 = null;
+                selectedFileName = null;
+                selectedFileType = null;
+                uploadLabel.innerText = "파일 선택하기 (PDF, TXT, PNG, JPG)";
+                uploadIcon.setAttribute('data-lucide', 'paperclip');
+                lucide.createIcons();
+                return;
+            }
+
+            if (!allowedFileTypes.has(file.type)) {
+                fileWarning.classList.remove('hidden');
+                fileWarning.querySelector('span').textContent = 'PDF, TXT, PNG, JPG, WEBP 파일만 첨부할 수 있습니다.';
+                event.target.value = '';
+                selectedFileBase64 = null;
+                selectedFileName = null;
+                selectedFileType = null;
+                uploadLabel.innerText = '파일 선택하기 (PDF, TXT, PNG, JPG)';
+                return;
+            }
+
+            // Strict File Size Validation: max 300KB to stay within localStorage quota.
+            if (file.size > 300 * 1024) {
+                fileWarning.classList.remove('hidden');
+                fileWarning.querySelector('span').textContent = '300KB 이하의 파일만 현재 브라우저에 저장할 수 있습니다.';
+                event.target.value = ''; // clear input
+                selectedFileBase64 = null;
+                selectedFileName = null;
+                selectedFileType = null;
+                uploadLabel.innerText = "파일 선택하기 (PDF, TXT, PNG, JPG)";
+                return;
+            }
+
+            fileWarning.classList.add('hidden');
+            selectedFileName = file.name;
+            selectedFileType = file.type;
+
+            // Convert to Base64
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                selectedFileBase64 = e.target.result;
+                uploadLabel.innerText = `첨부 완료: ${file.name.slice(0, 18)}${file.name.length > 18 ? '...' : ''}`;
+                uploadIcon.setAttribute('data-lucide', 'check-circle-2');
+                lucide.createIcons();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Submitting Guestbook Entry
+        async function handleGuestbookSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('gbName').value.trim();
+            const track = document.getElementById('gbTrack').value;
+            const intro = document.getElementById('gbIntro').value.trim();
+            const password = document.getElementById('gbPassword').value.trim();
+            const tag = document.getElementById('gbSelectedTag').value;
+
+            if (!/^\d{4}$/.test(password)) {
+                showDynamicToast('삭제용 비밀번호는 숫자 4자리로 입력해 주세요.');
+                return;
+            }
+            const passwordHash = await hashPassword(password);
+
+            const newEntry = {
+                id: Date.now().toString(),
+                name: name,
+                track: track,
+                intro: intro,
+                passwordHash: passwordHash,
+                tag: tag || null,   // Dynamic tag mapping
+                timestamp: new Date().toLocaleDateString('ko-KR', {
+                    year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                }),
+                file: selectedFileBase64 ? {
+                    name: selectedFileName,
+                    type: selectedFileType,
+                    dataUrl: selectedFileBase64
+                } : null
+            };
+
+            // Push & Save
+            guestbookData.unshift(newEntry);
+            if (!persistGuestbook()) {
+                guestbookData.shift();
+                return;
+            }
+
+            // Reset UI state
+            document.getElementById('guestbookForm').reset();
+            selectedFileBase64 = null;
+            selectedFileName = null;
+            selectedFileType = null;
+            document.getElementById('gbSelectedTag').value = "";
+            document.getElementById('uploadLabel').innerText = "파일 선택하기 (PDF, TXT, PNG, JPG)";
+            document.getElementById('uploadIcon').setAttribute('data-lucide', 'paperclip');
+            
+            // Remove selection border highlights on buttons
+            document.querySelectorAll('.gb-tag-btn').forEach(btn => {
+                btn.classList.remove('border-brandOrange', 'text-brandOrange', 'bg-brandOrange/5');
+            });
+
+            filterGuestbookByTag('전체'); // Fallback list to all and render
+            showDynamicToast("방명록 카드가 현재 브라우저에 저장되었습니다!");
+        }
+
+        // Render Guestbook Cards Grid
+        function renderGuestbook() {
+            const container = document.getElementById('guestbookList');
+            const countBadge = document.getElementById('guestbookCount');
+            
+            // Filter list by active tag
+            let filteredList = guestbookData;
+            if (activeTagFilter !== '전체') {
+                filteredList = guestbookData.filter(entry => entry.tag === activeTagFilter);
+            }
+
+            countBadge.innerText = filteredList.length;
+
+            if (filteredList.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-400 dark:text-brandGray-muted text-xs border border-dashed border-slate-200 dark:border-brandNavy-light rounded-2xl bg-white dark:bg-transparent">
+                        ${activeTagFilter === '전체' ? '아직 등록된 방명록이 없습니다. 첫 흔적을 가장 먼저 남겨보세요!' : `'${activeTagFilter}' 태그에 소속된 방명록 카드가 없습니다.`}
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredList.map(entry => {
+                const safeEntryId = String(entry.id || '').replace(/[^a-zA-Z0-9_-]/g, '');
+                const safeFileDataUrl = getSafeDataUrl(entry.file?.dataUrl);
+                const trackColors = {
+                    'Python': 'from-blue-500/20 to-indigo-500/10 text-blue-500 dark:text-blue-300 border-blue-500/30',
+                    'Java': 'from-red-500/20 to-orange-500/10 text-orange-600 dark:text-orange-300 border-orange-500/30',
+                    'Embedded': 'from-emerald-500/20 to-teal-500/10 text-emerald-600 dark:text-emerald-300 border-emerald-500/30',
+                    'Mobile': 'from-purple-500/20 to-pink-500/10 text-pink-600 dark:text-pink-300 border-pink-500/30',
+                    'Embedded Robot': 'from-yellow-500/20 to-amber-500/10 text-amber-600 dark:text-amber-300 border-yellow-500/30',
+                    'Data': 'from-cyan-500/20 to-blue-500/10 text-cyan-600 dark:text-cyan-300 border-cyan-500/30'
+                };
+
+                const badgeClass = trackColors[entry.track] || 'from-slate-100 to-slate-200 dark:from-brandNavy-light/80 dark:to-brandNavy-dark text-slate-800 dark:text-white border-slate-300 dark:border-brandNavy-light';
+
+                // Render File Download Link if exists
+                const fileDownloadHtml = entry.file && safeFileDataUrl ? `
+                    <div class="mt-4 p-2.5 rounded-xl bg-slate-50 dark:bg-brandNavy-dark/80 border border-slate-200 dark:border-brandNavy-light/60 flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-1.5 overflow-hidden">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 text-brandOrange flex-shrink-0"></i>
+                            <span class="text-[10px] text-slate-500 dark:text-brandGray-muted truncate max-w-[180px]">${escapeHtml(entry.file.name)}</span>
+                        </div>
+                        <a href="${safeFileDataUrl}" download="${escapeHtml(entry.file.name)}" rel="noopener" class="px-2.5 py-1 rounded bg-brandOrange/20 hover:bg-brandOrange text-brandOrange hover:text-white text-[9px] font-bold flex items-center gap-1 transition-all flex-shrink-0">
+                            <i data-lucide="download" class="w-2.5 h-2.5"></i> 다운로드
+                        </a>
+                    </div>
+                ` : '';
+
+                // Render Quick Tag indicator inside card
+                const tagHtml = entry.tag ? `
+                    <span class="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-brandOrange/10 border border-brandOrange/20 text-brandOrange font-title">
+                        ${escapeHtml(entry.tag)}
+                    </span>
+                ` : '';
+
+                return `
+                    <div class="p-5 rounded-2xl bg-white dark:bg-brandNavy-light/20 border border-slate-200 dark:border-brandNavy-light/60 relative group hover:border-brandOrange/40 transition-all duration-300 shadow-sm">
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <div>
+                                <div class="flex flex-wrap gap-1.5 items-center">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold border bg-gradient-to-r ${badgeClass} font-title">
+                                        ${escapeHtml(entry.track)}
+                                    </span>
+                                    ${tagHtml}
+                                </div>
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-2.5 font-title inline-block">${escapeHtml(entry.name)}</h4>
+                            </div>
+                            
+                            <!-- Delete button -->
+                            <button type="button" onclick="openDeleteModal('${safeEntryId}')" class="text-slate-400 dark:text-brandGray-muted hover:text-red-500 dark:hover:text-red-400 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-brandNavy-light/60 transition-colors" title="삭제">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        
+                        <p class="text-slate-600 dark:text-brandGray-muted text-xs leading-relaxed whitespace-pre-line">${escapeHtml(entry.intro)}</p>
+                        
+                        ${fileDownloadHtml}
+                        
+                        <span class="block text-[9px] text-slate-400 dark:text-brandGray-muted/40 mt-4">${escapeHtml(entry.timestamp)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        // Delete Verification Modal Control
+        const deleteVerifyModal = document.getElementById('deleteVerifyModal');
+        const deleteCard = document.getElementById('deleteCard');
+        const deletePasswordInput = document.getElementById('deletePasswordInput');
+
+        function openDeleteModal(id) {
+            entryIdToDelete = id;
+            deletePasswordInput.value = '';
+            deleteVerifyModal.classList.remove('opacity-0', 'pointer-events-none');
+            deleteVerifyModal.classList.add('opacity-100');
+            deleteCard.classList.remove('scale-95');
+            deleteCard.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+            window.setTimeout(() => deletePasswordInput.focus(), 50);
+        }
+
+        function closeDeleteModal() {
+            deleteVerifyModal.classList.remove('opacity-100');
+            deleteVerifyModal.classList.add('opacity-0', 'pointer-events-none');
+            deleteCard.classList.remove('scale-100');
+            deleteCard.classList.add('scale-95');
+            document.body.style.overflow = '';
+            entryIdToDelete = null;
+        }
+
+        async function confirmDeleteEntry() {
+            const passwordAttempt = deletePasswordInput.value.trim();
+            const targetIndex = guestbookData.findIndex(entry => entry.id === entryIdToDelete);
+
+            if (targetIndex === -1) {
+                closeDeleteModal();
+                return;
+            }
+
+            if (!/^\d{4}$/.test(passwordAttempt)) {
+                showDynamicToast('비밀번호는 숫자 4자리입니다.');
+                return;
+            }
+            const passwordHash = await hashPassword(passwordAttempt);
+            const targetEntry = guestbookData[targetIndex];
+            const passwordMatches = targetEntry.passwordHash === passwordHash || targetEntry.password === passwordAttempt;
+
+            if (passwordMatches) {
+                guestbookData.splice(targetIndex, 1);
+                persistGuestbook();
+                renderGuestbook();
+                closeDeleteModal();
+                showDynamicToast("선택하신 방명록 카드가 삭제되었습니다.");
+            } else {
+                // Incorrect
+                deletePasswordInput.classList.add('border-red-400');
+                setTimeout(() => deletePasswordInput.classList.remove('border-red-400'), 1500);
+                showDynamicToast("비밀번호가 올바르지 않습니다.");
+            }
+        }
+
+        // Clean slate helper for sandbox reset (IFRAME SAFE - Double click mechanism instead of confirm)
+        let clearClickCount = 0;
+        function clearAllGuestbookMock() {
+            if (clearClickCount === 0) {
+                clearClickCount++;
+                showDynamicToast("⚠️ 한 번 더 누르면 전체 방명록이 영구 삭제됩니다.");
+                setTimeout(() => { clearClickCount = 0; }, 3000);
+            } else {
+                guestbookData = [];
+                localStorage.removeItem('ssafyGuestbook');
+                renderGuestbook();
+                clearClickCount = 0;
+                showDynamicToast("🗑️ 이 브라우저의 방명록이 초기화되었습니다.");
+            }
+        }
+
+        // Custom Dynamics Toast System
+        function showDynamicToast(text) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('span').innerText = text;
+            toast.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // ==========================================
+        // 11. SYNERGY SIMULATOR LOGIC
+        // ==========================================
+        
+        const synergyData = {
+            'Python': {
+                project: "Generative AI 소셜 미디어 트렌드 분석 및 광고 배너 자동 생성 서비스",
+                bumguRole: "타겟 트렌드 실시간 마케팅 인사이트 기획 및 프롬프트 체인 최적화 워크플로우 API 가이드 설계",
+                yourRole: "FastAPI / Django 기반 초고속 비동기 크롤러 엔진 구축 및 이미지 생성 API 백엔드 아키텍처 구현",
+                smsOutput: "트렌드 감지부터 마케팅 비주얼 생산까지 단 5초만에 자동 연계되는 초격차 비즈니스 SaaS 프로토타입 확보!"
+            },
+            'Java': {
+                project: "엔터프라이즈급 AI 기획서 정밀 자동 검증 및 시뮬레이션 SaaS",
+                bumguRole: "마케팅 비즈니스 정량/정성 도메인 평가 수식 로직 수립 및 기획서 텍스트 데이터 토큰 매핑 가이드",
+                yourRole: "Spring Boot / MSA 기반 분산 서비스 트랜잭션 보장, 데이터베이스 트래픽 격리 및 부하 분산 분산 캐시 구현",
+                smsOutput: "SSAFY 프로젝트 검증 시 활용될 수 있는 실제 가동 가능 수준의 초고성능 대규모 B2B 아키텍처 완성!"
+            },
+            'Embedded': {
+                project: "렌즈 포착 실시간 유동인구 센서 연동 스마트 오프라인 광고 타겟팅 엣지 디바이스",
+                bumguRole: "유동 인구 특성 자동 분류 세그멘테이션 기획 및 타겟 이미지 매칭 AI 콘텐츠 기획",
+                yourRole: "저전력 마이크로컨트롤러(MCU) 드라이버 펌웨어 개발, 센서 연동 인터럽트 제어 및 고속 시리얼 통신 통제",
+                smsOutput: "오프라인 카메라에 AI 분석력을 직접 탑재하여, 현장에서 대상의 집중도를 실시간 측정하는 피지컬 엣지 컴퓨팅 하드웨어 구현!"
+            },
+            'Mobile': {
+                project: "온디바이스 AI 카메라 렌즈 연동 실시간 트렌드 개인 맞춤 큐레이팅 앱",
+                bumguRole: "카메라 렌즈 촬영을 통한 개인 인터랙션 경험 최적화 플로우 및 획기적인 트렌드 추천 기획",
+                yourRole: "Flutter / Native 모바일 클라이언트 개발, 온디바이스 AI 텐서플로우 라이트 이식 및 고성능 UI 렌더링",
+                smsOutput: "사용자의 즉각적인 캡처 행위와 AI의 정밀 판단력이 만나 탄생한 세련된 크로스플랫폼 모바일 프로덕트 획득!"
+            },
+            'Embedded Robot': {
+                project: "AI 자율주행 실시간 전시 도슨트 및 지능형 가이드 딜리버리 로봇",
+                bumguRole: "전시관 공간 마케팅 도메인 유저 동선 최적화 전략 기획 및 로봇 디스플레이 콘텐츠 로드맵 수립",
+                yourRole: "ROS2 기반 로봇 슬램(SLAM) 내비게이션 경로 최적화 및 하드웨어 임베디드 액추에이터 고속 제어",
+                smsOutput: "도슨트 기획의 감성 영역과 완벽한 자율 주행 로보틱스 기술이 융합한 SSAFY 최고의 킬러 이색 시너지 하드웨어!"
+            },
+            'Data': {
+                project: "LLM 소비자 실시간 피드백 텍스트 감성 분석 및 자동 마케팅 대시보드",
+                bumguRole: "소비자 니즈 정밀 마케팅 핵심 평가지표(KPI) 수립 및 LLM 감성 수치화 분석 기획 조율",
+                yourRole: "자연어 처리(NLP) 데이터 파이프라인 구축, ML 예측 모델 훈련 및 대용량 분석 시각화 대시보드 구축",
+                smsOutput: "무형의 피드백 데이터를 정교한 숫자와 예측 그래프로 시각화하여, 마케터의 기획 의사결정을 실시간 돕는 똑똑한 비즈니스 솔루션 탄생!"
+            }
+        };
+
+        function runSynergySimulation(trackName) {
+            lastSelectedTrack = trackName;
+            lastSelectedProject = synergyData[trackName]?.project || '';
+            // Highlight Selected Track Card UI
+            document.querySelectorAll('.simulator-btn').forEach(btn => {
+                btn.classList.remove('border-brandOrange', 'ring-2', 'ring-brandOrange/30');
+            });
+            const trackButtonIds = { 'Embedded Robot': 'btn-Robot' };
+            const selectedBtn = document.getElementById(trackButtonIds[trackName] || `btn-${trackName.replaceAll(' ', '')}`);
+            if (selectedBtn) {
+                selectedBtn.classList.add('border-brandOrange', 'ring-2', 'ring-brandOrange/30');
+            }
+
+            // UI Elements
+            const consoleIdle = document.getElementById('consoleIdleState');
+            const consoleProcessing = document.getElementById('consoleProcessingState');
+            const consoleResult = document.getElementById('consoleResultState');
+            const progressBar = document.getElementById('processingProgressBar');
+            const stepText = document.getElementById('processingStep');
+
+            // Switch to Processing State
+            consoleIdle.classList.add('hidden');
+            consoleResult.classList.add('hidden');
+            consoleProcessing.classList.remove('hidden');
+
+            // Reset progress
+            progressBar.style.width = '0%';
+
+            // Simulation animation steps
+            const steps = [
+                { percent: '20%', label: "🔍 [1/4] '한범구 기획 코어 리소스' 로드 중..." },
+                { percent: '50%', label: `🤖 [2/4] '${trackName} 개발 스택'과의 데이터 호환성 검증 중...` },
+                { percent: '80%', label: "⚡ [3/4] AE 비즈니스 기획 로직 + AI 생산 알고리즘 병합 완료..." },
+                { percent: '100%', label: "✨ [4/4] 한범구 x 동료 기획자 최상의 A급 시너지 조합 완료!" }
+            ];
+
+            let stepIdx = 0;
+
+            function runStep() {
+                if (stepIdx < steps.length) {
+                    progressBar.style.width = steps[stepIdx].percent;
+                    stepText.innerText = steps[stepIdx].label;
+                    stepIdx++;
+                    setTimeout(runStep, 450); // Fluid fast animation
+                } else {
+                    // Populate results
+                    const match = synergyData[trackName];
+                    document.getElementById('resTrackName').innerText = trackName.toUpperCase();
+                    document.getElementById('resProjectName').innerText = match.project;
+                    document.getElementById('resBumguRole').innerText = match.bumguRole;
+                    document.getElementById('resYourRole').innerText = match.yourRole;
+                    document.getElementById('resSmsOutput').innerText = match.smsOutput;
+
+                    // Transition to Result Screen
+                    consoleProcessing.classList.add('hidden');
+                    consoleResult.classList.remove('hidden');
+                    consoleResult.classList.add('flex');
+                    
+                    // Render icons inside newly populated HTML
+                    lucide.createIcons();
+                }
+            }
+
+            runStep();
+        }
+    </script>
+</body>
+</html>
