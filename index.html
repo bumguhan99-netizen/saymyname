@@ -141,12 +141,31 @@
             transition: transform 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
             will-change: transform;
         }
+
+        /* Caret Blinking typing cursor */
+        .typing-cursor::after {
+            content: '';
+            display: inline-block;
+            width: 2px;
+            height: 0.85em;
+            background-color: #F97316;
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: caretBlink 0.8s infinite;
+        }
+        @keyframes caretBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body class="overflow-x-hidden bg-slate-50 text-slate-800 dark:bg-brandNavy-dark dark:text-slate-100">
 
     <!-- Scroll Progress Bar -->
     <div id="scrollProgressBar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-brandOrange to-brandOrange-light z-[100] w-0 transition-all duration-75"></div>
+
+    <!-- Fixed Background Grid Layer for beautiful Parallax -->
+    <div id="parallaxGridBg" class="fixed inset-y-0 left-0 w-full h-[120vh] -top-[10vh] pointer-events-none z-0 opacity-[0.03] dark:opacity-[0.06] will-change-transform" style="background-image: radial-gradient(#F97316 1.5px, transparent 1.5px); background-size: 32px 32px;"></div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-40 bg-white/85 dark:bg-brandNavy-dark/80 backdrop-blur-lg border-b border-slate-200/80 dark:border-brandNavy-light/50 transition-all duration-300">
@@ -229,11 +248,11 @@
                 SAMSUNG BOOTCAMP COLLABORATOR
             </div>
 
-            <!-- Catchphrase -->
-            <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white mb-6 font-title px-1">
+            <!-- Catchphrase (Enhanced with Typing Effect) -->
+            <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white mb-6 font-title px-1 min-h-[3.6em] sm:min-h-[auto]">
                 <span class="text-brandOrange">AE</span> 기획했던 능력들을,<br class="sm:hidden">
                 <span class="text-brandOrange">AI</span> 제작을 바탕으로<br>
-                <span class="text-brandOrange">A급</span> 기획자가 될 한범구입니다
+                <span class="text-brandOrange typing-cursor" id="typing-hero"></span> 기획자가 될 한범구입니다
             </h1>
 
             <!-- Subtitle -->
@@ -964,6 +983,7 @@
         // 4. Scroll Indicator Progress Bar & Multi-layer Parallax Engine
         const scrollBar = document.getElementById('scrollProgressBar');
         const parallaxElements = document.querySelectorAll('.parallax-element');
+        const parallaxGridBg = document.getElementById('parallaxGridBg');
 
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
@@ -975,12 +995,18 @@
                 scrollBar.style.width = `${scrolledPercentage}%`;
             }
 
-            // 2) Update Background Floating Blurs Parallax (Skip or minimize on tiny screens for battery performance)
+            // 2) Update Background Floating Blurs & Grid Pattern Parallax (Desktop Only for GPU Efficiency)
             if (window.innerWidth > 768) {
+                // Floating Blur Blobs
                 parallaxElements.forEach(el => {
                     const speed = parseFloat(el.getAttribute('data-speed')) || 0.1;
                     el.style.transform = `translateY(${scrollY * speed}px)`;
                 });
+
+                // Fixed Dot Grid Layer: Slowly shifts down as the user scrolls down, creating depth
+                if (parallaxGridBg) {
+                    parallaxGridBg.style.transform = `translateY(${scrollY * 0.15}px)`;
+                }
             }
         });
 
@@ -1179,12 +1205,47 @@
             animationFrameId = requestAnimationFrame(animate);
         }
 
+        // ==========================================
+        // 8. DYNAMIC TYPING EFFECT LOGIC
+        // ==========================================
+        const typingHero = document.getElementById('typing-hero');
+        const words = ["A급", "AI 융합형", "끝까지 완수하는", "협업 특화"];
+        let wordIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+
+        function typeEffect() {
+            const currentWord = words[wordIdx];
+            if (isDeleting) {
+                typingHero.innerText = currentWord.substring(0, charIdx - 1);
+                charIdx--;
+                typingSpeed = 75; // Faster deletion for dynamic feel
+            } else {
+                typingHero.innerText = currentWord.substring(0, charIdx + 1);
+                charIdx++;
+                typingSpeed = 150; // Standard typing rhythm
+            }
+
+            if (!isDeleting && charIdx === currentWord.length) {
+                isDeleting = true;
+                typingSpeed = 2200; // Keep the full word readable for 2.2s
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                wordIdx = (wordIdx + 1) % words.length;
+                typingSpeed = 400; // Brief delay before typing next word
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+
         window.onload = function() {
             animate();
             renderGuestbook(); // Load saved local guestbook lists
+            typeEffect(); // Start dynamic typing rotation loop
         };
 
-        // 8. Mattermost ID Copy Mechanism
+        // 9. Mattermost ID Copy Mechanism
         function copyMailToClipboard() {
             const tempInput = document.createElement('textarea');
             tempInput.value = '서울 7반 한범구';
@@ -1204,7 +1265,7 @@
         }
 
         // ==========================================
-        // 9. LOCAL STORAGE GUESTBOOK LOGIC & TAG FILTERING
+        // 10. LOCAL STORAGE GUESTBOOK LOGIC & TAG FILTERING
         // ==========================================
         
         let guestbookData = JSON.parse(localStorage.getItem('bootcampGuestbook')) || [];
@@ -1214,7 +1275,7 @@
         let entryIdToDelete = null;
         let activeTagFilter = '전체'; // Global Active Filter State
 
-        // 9a. Selectable Quick Tags in the form
+        // 10a. Selectable Quick Tags in the form
         function selectGuestbookTag(buttonElement, tagString) {
             const hiddenInput = document.getElementById('gbSelectedTag');
             const siblingButtons = document.querySelectorAll('.gb-tag-btn');
@@ -1234,7 +1295,7 @@
             }
         }
 
-        // 9b. Filter cards from the live view list
+        // 10b. Filter cards from the live view list
         function filterGuestbookByTag(tagFilter) {
             activeTagFilter = tagFilter;
             
@@ -1505,7 +1566,7 @@
         }
 
         // ==========================================
-        // 10. SYNERGY SIMULATOR LOGIC
+        // 11. SYNERGY SIMULATOR LOGIC
         // ==========================================
         
         const synergyData = {
